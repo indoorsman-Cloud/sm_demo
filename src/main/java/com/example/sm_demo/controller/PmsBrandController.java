@@ -30,7 +30,7 @@ public class PmsBrandController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult createBrand(PmsBrand pmsBrand) {
+    public CommonResult createBrand(@RequestBody PmsBrand pmsBrand) {
         CommonResult commonResult = null;
         LOGGER.debug("createBrand : pmsBrand={}", pmsBrand);
         int count = pmsBrandService.createBrand(pmsBrand);
@@ -60,9 +60,9 @@ public class PmsBrandController {
         return commonResult;
     }
 
-    @RequestMapping(value = "/delete/" , method = RequestMethod.POST)
+    @RequestMapping(value = "/delete" , method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult deleteBrand(@PathVariable("id") Long id) {
+    public CommonResult deleteBrand(Long id) {
         int count = pmsBrandService.deleteBrand(id);
         if (count == 1) {
             LOGGER.debug("deleteBrand success :id={}", id);
