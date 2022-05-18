@@ -29,7 +29,16 @@ public class PmsBrandController {
 
     public CommonResult createBrand(PmsBrand pmsBrand) {
         CommonResult commonResult = null;
-
+        int count = pmsBrandService.createBrand(pmsBrand);
+        if (count == 1) {
+            commonResult = CommonResult.success(pmsBrand);
+            LOGGER.debug("createBrand success:{}", pmsBrand);
+        } else {
+            commonResult = CommonResult.failed("操作失败");
+            LOGGER.debug("createBrand failed:{}", pmsBrand);
+        }
         return commonResult;
     }
+
+
 }
